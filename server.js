@@ -35,8 +35,8 @@ if (process.env.NODE_ENV === "development") {
 }
 
 //Routes
-app.use("/api/v1/quizzes", quizRouter);
-app.use("/api/v1/announcements", announcementRouter);
+app.use("/quizzes", quizRouter);
+app.use("/announcements", announcementRouter);
 
 app.use("*", (req, res, next) => {
   next(new ApiError(`Can not find path ${req.originalUrl}`, 400));

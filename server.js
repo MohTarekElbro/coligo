@@ -9,6 +9,18 @@ const globalError = require("./middlewares/errorMiddleware");
 
 dotenv.config({ path: "config.env" });
 
+app.use((req, res, next) => {
+    var allowedOrigins = ["*"];
+    var origin = req.headers.origin;
+    if (allowedOrigins.indexOf(origin) > -1) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH');
+    res.append('Access-Control-Allow-Headers', 'Content-Type');
+    res.append('Access-Control-Allow-Headers', 'Authorization');
+    next();
+});
+
 //connect with db
 dbConnection();
 
